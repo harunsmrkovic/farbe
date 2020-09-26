@@ -24,6 +24,7 @@ const Wrap = styled.div`
 
 const CanvasWrap = styled.div`
   position: absolute;
+  cursor: crosshair;
   left: ${({ theme }) => theme.layoutSizes.toolbarWidth}px;
   right: ${({ theme }) => theme.layoutSizes.settingsWidth}px;
   top: ${({ theme }) => theme.layoutSizes.headerHeight}px;

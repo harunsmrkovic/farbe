@@ -56,9 +56,8 @@ const DrawingLayer = props => {
 }
 
 const ShapesLayer = ({ shapes }) => {
-  return shapes.map(shape => {
-    // TODO: id should exist probz
-    return <Shape key={shape.id} {...shape} />
+  return shapes.map((shape, i) => {
+    return <Shape key={[shape.x, shape.y, i].join('-')} {...shape} />
   })
 }
 

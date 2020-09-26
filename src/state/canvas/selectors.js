@@ -1,11 +1,13 @@
 import { path, pipe } from 'ramda'
 
-export const getSelectedTool = path(['canvas', 'selectedTool'])
-export const getBackgroundColor = path(['canvas', 'backgroundColor'])
-export const getShapes = path(['canvas', 'shapes'])
-export const getStrokeSize = pipe(path(['canvas', 'strokeSize']), parseInt)
+const selectCanvas = deeper => path(['canvas', 'present', ...deeper])
+
+export const getSelectedTool = selectCanvas(['selectedTool'])
+export const getBackgroundColor = selectCanvas(['backgroundColor'])
+export const getShapes = selectCanvas(['shapes'])
+export const getStrokeSize = pipe(selectCanvas(['strokeSize']), parseInt)
 export const getSelectedColor = state => {
-  const selectedColor = path(['canvas', 'selectedColor'])(state)
+  const selectedColor = selectCanvas(['selectedColor'])(state)
   const { r, g, b, a } = selectedColor.rgb || {}
   return {
     ...selectedColor,
