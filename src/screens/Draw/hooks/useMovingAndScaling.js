@@ -1,5 +1,11 @@
 import { useCallback, useState } from 'react'
 
+/*
+  Hook for handling manipulation of Canvas,
+  specifically for allowing scroll-to-move
+  and pinch-to-zoom functionality in browser
+*/
+
 export const useMovingAndScaling = () => {
   const [offsetX, setOffsetX] = useState(0)
   const [offsetY, setOffsetY] = useState(0)

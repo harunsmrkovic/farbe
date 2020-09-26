@@ -9,7 +9,7 @@ export const Header = () => {
   return (
     <HeaderWrap>
       <Logo to="/">
-        <Icon name="Logo" size={40} />
+        <Icon name="Logo" size={50} />
       </Logo>
       <Nav>
         <HeaderLink to="/" exact>

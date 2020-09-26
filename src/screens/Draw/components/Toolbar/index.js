@@ -21,7 +21,7 @@ const ToolbarView = ({ selectTool }) => {
           selected={selectedTool === toolId}
           onClick={() => selectTool(toolId)}
         >
-          <Icon name={Tools[toolId].icon} size={25} color={Theme.color.white} />
+          <Icon name={Tools[toolId].icon} size={20} color={Theme.color.white} />
         </Tool>
       ))}
     </Wrap>
@@ -45,11 +45,12 @@ const Wrap = styled.div`
 const Tool = styled.button`
   height: 80px;
 
+  border-bottom: 1px solid ${({ theme }) => theme.color.grey10};
   transition: background-color ${({ theme }) => theme.transition.normal};
   background-color: ${({ theme, selected }) =>
     selected ? theme.color.primary : 'transparent'};
 `
 
 export const Toolbar = connect(null, dispatch =>
-  bindActionCreators({ selectTool: canvasSlice.actions.selectTool }, dispatch)
+  bindActionCreators(canvasSlice.actions, dispatch)
 )(ToolbarView)
