@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink, Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 import styled from 'styled-components/macro'
 import { Theme } from '../../constants/Theme'
@@ -8,9 +8,6 @@ import { Icon } from '../Icon'
 export const Header = () => {
   return (
     <HeaderWrap>
-      <Logo to="/">
-        <Icon name="Logo" size={50} />
-      </Logo>
       <Nav>
         <HeaderLink to="/" exact>
           <Icon name="Brush" size={36} color={Theme.color.white} />
@@ -26,13 +23,13 @@ export const Header = () => {
 }
 
 const HeaderWrap = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   border-bottom: 1px solid ${({ theme }) => theme.color.grey10};
   display: flex;
-`
-
-const Logo = styled(Link)`
-  display: block;
-  padding: ${({ theme }) => theme.padding.l};
+  height: 80px;
 `
 
 const Nav = styled.nav`
