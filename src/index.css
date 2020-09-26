@@ -141,7 +141,6 @@ html,
 body,
 #root {
   height: 100%;
-  touch-action: none;
 }
 
 body {

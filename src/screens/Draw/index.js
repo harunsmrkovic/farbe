@@ -8,19 +8,31 @@ export const DrawScreen = () => {
   return (
     <Wrap>
       <Toolbar />
-      <MainCanvas />
+      <CanvasWrap>
+        <MainCanvas />
+      </CanvasWrap>
       <CanvasSettings />
     </Wrap>
   )
 }
 
-const Wrap = styled.div``
+const Wrap = styled.div`
+  position: relative;
+  height: 100%;
+`
+
+const CanvasWrap = styled.div`
+  position: absolute;
+  left: ${({ theme }) => theme.layoutSizes.toolbarWidth}px;
+  right: ${({ theme }) => theme.layoutSizes.settingsWidth}px;
+  top: ${({ theme }) => theme.layoutSizes.headerHeight}px;
+`
 
 const CanvasSettings = styled.div`
-  background-color: rgba(255, 255, 255, 0.2);
-  width: 300px;
-  position: fixed;
+  position: absolute;
+  width: ${({ theme }) => theme.layoutSizes.settingsWidth}px;
+  top: ${({ theme }) => theme.layoutSizes.headerHeight}px;
   right: 0;
-  top: 0;
   bottom: 0;
+  background-color: red;
 `

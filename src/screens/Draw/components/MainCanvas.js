@@ -1,40 +1,28 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Stage, Layer, Rect, Circle } from 'react-konva'
-import { useScreenSize } from '../../../hooks/useScreenSize'
+
+import { useCanvasSize } from '../hooks/useCanvasSize'
+import { useMovingAndScaling } from '../hooks/useMovingAndScaling'
 
 export const MainCanvas = () => {
-  const { width, height } = useScreenSize()
-
-  const [offsetX, setOffsetX] = useState(0)
-  const [offsetY, setOffsetY] = useState(0)
-  const [scaleFactor, setScaleFactor] = useState(1)
-
-  const onStageWheel = e => {
-    if (e.evt.deltaY % 1 !== 0) {
-      e.evt.preventDefault()
-      setScaleFactor(s => s - e.evt.deltaY * 0.01)
-    }
-
-    setOffsetX(x => x - e.evt.deltaX)
-    setOffsetY(y => y - e.evt.deltaY)
-  }
-
-  // const onStageTouchMove = e => {
-  //   e.evt.preventDefault()
-  //   console.log(e.evt)
-  // }
+  const { canvasWidth, canvasHeight } = useCanvasSize()
+  const { onStageWheel, offsetX, offsetY, scaleFactor } = useMovingAndScaling()
 
   return (
     <Stage
-      width={width}
-      height={height}
+      width={canvasWidth}
+      height={canvasHeight}
       fill="green"
       scaleX={scaleFactor}
       scaleY={scaleFactor}
       onWheel={onStageWheel}
     >
       <Layer>
-        <Rect width={width} height={height} fill="rgba(255, 0, 255, 0.1)" />
+        <Rect
+          width={canvasWidth / scaleFactor}
+          height={canvasHeight / scaleFactor}
+          fill="rgba(255, 0, 255, 0.1)"
+        />
         <Circle
           x={200 + offsetX}
           y={200 + offsetY}

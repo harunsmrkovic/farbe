@@ -13,5 +13,10 @@ export const Theme = {
     l: '20px',
     xl: '30px',
     xxl: '50px'
+  },
+  layoutSizes: {
+    headerHeight: 80,
+    toolbarWidth: 80,
+    settingsWidth: 300
   }
 }
