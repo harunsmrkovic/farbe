@@ -3,30 +3,28 @@ import React from 'react'
 import { Stage, Layer, default as Konva } from 'react-konva'
 import { connect, useSelector } from 'react-redux'
 import styled from 'styled-components/macro'
-import { canvasSlice } from '../../../state/canvas'
+import { canvasSlice } from '../../../../state/canvas'
 import {
   getBackgroundColor,
-  getSelectedTool,
   getShapes
-} from '../../../state/canvas/selectors'
+} from '../../../../state/canvas/selectors'
 
-import { useCanvasSize } from '../hooks/useCanvasSize'
-import { useDrawing } from '../hooks/useDrawing'
-import { useMovingAndScaling } from '../hooks/useMovingAndScaling'
+import { useCanvasSize } from '../../hooks/useCanvasSize'
+import { useDrawing } from '../../hooks/useDrawing'
+import { useMovingAndScaling } from '../../hooks/useMovingAndScaling'
 
 export const MainCanvasView = ({ addShape }) => {
   const { canvasWidth, canvasHeight } = useCanvasSize()
   const { onStageWheel, offsetX, offsetY, scaleFactor } = useMovingAndScaling()
 
   const backgroundColor = useSelector(getBackgroundColor)
-  const selectedTool = useSelector(getSelectedTool)
 
   const {
     onStageMouseDown,
     onStageMouseUp,
     onStageMouseMove,
     drawing
-  } = useDrawing({ commit: addShape, tool: selectedTool })
+  } = useDrawing({ commit: addShape })
 
   const shapes = useSelector(getShapes)
 

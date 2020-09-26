@@ -1,4 +1,11 @@
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
+import { Tools } from '../../../constants/Tools'
+import {
+  getSelectedColor,
+  getSelectedTool,
+  getStrokeSize
+} from '../../../state/canvas/selectors'
 
 /*
   Hook used for facilitating events around
@@ -6,21 +13,27 @@ import { useState } from 'react'
   the work in progress into the final storage
 */
 
-export const useDrawing = ({ commit, tool }) => {
+export const useDrawing = ({ commit }) => {
   const [drawing, setDrawing] = useState(false)
+
+  const selectedTool = useSelector(getSelectedTool)
+  const selectedColor = useSelector(getSelectedColor)
+  const strokeWidth = useSelector(getStrokeSize)
 
   const onStageMouseDown = e => {
     const stage = e.target.getStage()
     const { x, y } = getRelativePointerPosition(stage)
 
     setDrawing({
-      type: tool,
+      type: selectedTool,
       konvaComponent: 'Line',
-      strokeWidth: 10,
-      stroke: 'red',
+      bezier: true,
+      strokeWidth,
+      lineCap: 'round',
+      stroke: selectedColor.rgba,
       points: [x, y],
       globalCompositeOperation:
-        tool === 'brush' ? 'source-over' : 'destination-out'
+        selectedTool === Tools.eraser.id ? 'destination-out' : 'source-over'
     })
   }
 
@@ -38,6 +51,19 @@ export const useDrawing = ({ commit, tool }) => {
 
   const onStageMouseUp = () => {
     if (!drawing) return
+
+    // No mouse movements happened, it's just a dot
+    if (drawing.points.length === 2) {
+      commit({
+        ...drawing,
+        konvaComponent: 'Circle',
+        radius: drawing.strokeWidth / 2,
+        strokeWidth: 1,
+        fill: drawing.stroke,
+        x: drawing.points[0],
+        y: drawing.points[1]
+      })
+    }
 
     commit(drawing)
     setDrawing(false)
