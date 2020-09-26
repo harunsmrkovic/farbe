@@ -3,6 +3,7 @@ export const Theme = {
     primary: '#116df7',
 
     white: '#fff',
+    grey5: '#131518',
     grey10: '#252729'
   },
   padding: {
@@ -18,5 +19,8 @@ export const Theme = {
     headerHeight: 80,
     toolbarWidth: 80,
     settingsWidth: 300
+  },
+  transition: {
+    normal: '0.2s ease-in-out'
   }
 }

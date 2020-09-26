@@ -34,5 +34,6 @@ const CanvasSettings = styled.div`
   top: ${({ theme }) => theme.layoutSizes.headerHeight}px;
   right: 0;
   bottom: 0;
-  background-color: red;
+  background-color: #000;
+  border-left: 1px solid ${({ theme }) => theme.color.grey10};
 `

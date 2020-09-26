@@ -13,11 +13,11 @@ export const Header = () => {
       </Logo>
       <Nav>
         <HeaderLink to="/" exact>
-          <Icon name="Brush" size={36} color={Theme.color.white} />
+          <Icon name="Brushes" size={35} color={Theme.color.white} />
           Draw
         </HeaderLink>
         <HeaderLink to="/stats">
-          <Icon name="Chart" size={36} color={Theme.color.white} />
+          <Icon name="Chart" size={35} color={Theme.color.white} />
           Statistics
         </HeaderLink>
       </Nav>
@@ -34,6 +34,7 @@ const HeaderWrap = styled.div`
   z-index: 10;
   height: ${({ theme }) => theme.layoutSizes.headerHeight}px;
   border-bottom: 1px solid ${({ theme }) => theme.color.grey10};
+  background-color: #000;
 `
 
 const Logo = styled(Link)`
@@ -59,6 +60,8 @@ const HeaderLink = styled(NavLink)`
   align-items: center;
   border-bottom: 4px solid transparent;
   margin-right: ${({ theme }) => theme.padding.m};
+
+  transition: border-color ${({ theme }) => theme.transition.normal};
 
   &.active {
     border-bottom-color: ${({ theme }) => theme.color.primary};

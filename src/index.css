@@ -90,6 +90,7 @@ video {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
+  box-sizing: border-box;
 }
 /* HTML5 display-role reset for older browsers */
 article,
@@ -129,6 +130,14 @@ table {
 }
 a {
   text-decoration: none;
+  cursor: pointer;
+}
+button {
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -151,5 +160,5 @@ body {
   font-family: 'Roboto', sans-serif;
 
   /* Disable browser handling of zoom/scroll events */
-  overscroll-behavior-x: none;
+  overscroll-behavior: none;
 }
