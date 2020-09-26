@@ -1,32 +1,26 @@
 import React from 'react'
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { ThemeProvider } from 'styled-components/macro'
+import { Header } from './components'
+import { Theme } from './constants'
 
 import { StatsScreen, DrawScreen } from './screens'
 
 export default function App() {
   return (
-    <Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Draw</Link>
-            </li>
-            <li>
-              <Link to="/stats">Stats</Link>
-            </li>
-          </ul>
-        </nav>
+    <ThemeProvider theme={Theme}>
+      <Router>
+        <Header />
 
         <Switch>
           <Route path="/stats">
-            <DrawScreen />
-          </Route>
-          <Route path="/">
             <StatsScreen />
           </Route>
+          <Route path="/">
+            <DrawScreen />
+          </Route>
         </Switch>
-      </div>
-    </Router>
+      </Router>
+    </ThemeProvider>
   )
 }
