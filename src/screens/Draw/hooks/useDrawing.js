@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Tools } from '../../../constants/Tools'
 import {
@@ -23,45 +23,51 @@ export const useDrawing = ({ commit }) => {
 
   const isEraser = selectedTool === Tools.eraser.id
 
-  const onStageMouseDown = e => {
-    const stage = e.target.getStage()
-    const { x, y } = getRelativePointerPosition(stage)
+  const onStageMouseDown = useCallback(
+    e => {
+      const stage = e.target.getStage()
+      const { x, y } = getRelativePointerPosition(stage)
 
-    setDrawing({
-      type: selectedTool,
-      konvaComponent: 'Line',
-      // bezier: true,
-      strokeWidth,
-      lineCap: 'round',
-      stroke: selectedColor.rgba,
-      points: [x, y],
-      globalCompositeOperation: isEraser ? 'destination-out' : 'source-over'
-    })
-  }
+      setDrawing({
+        type: selectedTool,
+        konvaComponent: 'Line',
+        // bezier: true,
+        strokeWidth,
+        lineCap: 'round',
+        stroke: selectedColor.rgba,
+        points: [x, y],
+        globalCompositeOperation: isEraser ? 'destination-out' : 'source-over'
+      })
+    },
+    [isEraser, strokeWidth, selectedColor.rgba, selectedTool]
+  )
 
-  const onStageMouseMove = e => {
-    const stage = e.target.getStage()
-    const { x, y } = getRelativePointerPosition(stage)
+  const onStageMouseMove = useCallback(
+    e => {
+      const stage = e.target.getStage()
+      const { x, y } = getRelativePointerPosition(stage)
 
-    // Handle cursor move
-    setCursor({
-      x,
-      y,
-      radius: strokeWidth / 2,
-      stroke: isEraser ? '#fff' : selectedColor.rgba,
-      fill: isEraser ? 'transparent' : selectedColor.rgba
-    })
+      // Handle cursor move
+      setCursor({
+        x,
+        y,
+        radius: strokeWidth / 2,
+        stroke: isEraser ? '#fff' : selectedColor.rgba,
+        fill: isEraser ? 'transparent' : selectedColor.rgba
+      })
 
-    // Handle drawing, if mouse has been pressed
-    if (!drawing) return
+      // Handle drawing, if mouse has been pressed
+      if (!drawing) return
 
-    setDrawing(drawing => ({
-      ...drawing,
-      points: [...drawing.points, x, y]
-    }))
-  }
+      setDrawing(drawing => ({
+        ...drawing,
+        points: [...drawing.points, x, y]
+      }))
+    },
+    [drawing, isEraser, strokeWidth, selectedColor.rgba]
+  )
 
-  const onStageMouseUp = () => {
+  const onStageMouseUp = useCallback(() => {
     if (!drawing) return
 
     // No mouse movements happened, it's just a dot
@@ -80,9 +86,9 @@ export const useDrawing = ({ commit }) => {
     }
 
     setDrawing(false)
-  }
+  }, [commit, drawing])
 
-  const onStageMouseLeave = () => setCursor(false)
+  const onStageMouseLeave = useCallback(() => setCursor(false), [])
 
   return {
     onStageMouseDown,
