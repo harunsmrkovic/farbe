@@ -3,6 +3,7 @@ import styled from 'styled-components/macro'
 import { bindActionCreators } from 'redux'
 import { connect, useSelector } from 'react-redux'
 import { useHotkeys } from 'react-hotkeys-hook'
+import { ActionCreators } from 'redux-undo'
 
 import { Icon } from '../../../../components/ui'
 import { Theme } from '../../../../constants/Theme'
@@ -10,8 +11,6 @@ import { Theme } from '../../../../constants/Theme'
 import { canvasSlice } from '../../../../state/canvas'
 import { getSelectedTool } from '../../../../state/canvas/selectors'
 import { Tools } from '../../../../constants/Tools'
-
-import { ActionCreators } from 'redux-undo'
 
 const ToolbarView = ({ selectTool, undo, redo }) => {
   const selectedTool = useSelector(getSelectedTool)

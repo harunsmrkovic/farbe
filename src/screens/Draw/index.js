@@ -4,6 +4,7 @@ import styled from 'styled-components/macro'
 import { Toolbar } from './components/Toolbar'
 import { MainCanvas } from './components/MainCanvas'
 import { CanvasSettings } from './components/CanvasSettings'
+import { UndoHistory } from './components/UndoHistory'
 
 export const DrawScreen = () => {
   return (
@@ -13,6 +14,7 @@ export const DrawScreen = () => {
         <MainCanvas />
       </CanvasWrap>
       <CanvasSettings />
+      <UndoHistory />
     </Wrap>
   )
 }

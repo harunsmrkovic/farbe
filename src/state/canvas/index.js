@@ -33,8 +33,6 @@ export const canvasSlice = createSlice({
       return {
         ...state,
         shapes: [...state.shapes, action.payload]
-        // TODO: reconsider the shape of shapes :)
-        // shapes: { ...state.shapes, [action.payload.id]: action.payload }
       }
     },
     startNew: state => {
@@ -54,19 +52,6 @@ export const canvasSlice = createSlice({
 
       return state
     }
-    // TODO: remove this?
-    // editShape: (state, action) => {
-    //   return {
-    //     ...state,
-    //     shapes: {
-    //       ...state.shapes,
-    //       [action.payload.id]: {
-    //         ...pathOr({}, ['shapes', action.payload.id], state),
-    //         ...action.payload
-    //       }
-    //     }
-    //   }
-    // }
   }
 })
 

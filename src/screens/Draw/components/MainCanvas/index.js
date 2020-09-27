@@ -1,6 +1,6 @@
 import { bindActionCreators } from '@reduxjs/toolkit'
 import React from 'react'
-import { Stage, Layer, default as Konva, Circle } from 'react-konva'
+import { Stage, Layer, Circle } from 'react-konva'
 import { connect, useSelector } from 'react-redux'
 import styled from 'styled-components/macro'
 
@@ -13,6 +13,7 @@ import {
 import { useCanvasSize } from '../../hooks/useCanvasSize'
 import { useDrawing } from '../../hooks/useDrawing'
 import { useMovingAndScaling } from '../../hooks/useMovingAndScaling'
+import { ShapesLayer, Shape } from '../ShapesLayer'
 import { ZoomLevel } from '../ZoomLevel'
 
 export const MainCanvasView = ({ addShape }) => {
@@ -56,17 +57,6 @@ export const MainCanvasView = ({ addShape }) => {
       <ZoomLevel scaleFactor={scaleFactor} />
     </Background>
   )
-}
-
-const ShapesLayer = ({ shapes }) => {
-  return shapes.map((shape, i) => {
-    return <Shape key={[shape.x, shape.y, i].join('-')} {...shape} />
-  })
-}
-
-const Shape = ({ konvaComponent, ...props }) => {
-  const ShapeComponent = Konva[konvaComponent]
-  return <ShapeComponent {...props} />
 }
 
 export const MainCanvas = connect(null, dispatch =>

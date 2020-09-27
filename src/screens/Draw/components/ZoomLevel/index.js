@@ -13,6 +13,8 @@ export const ZoomLevel = ({ scaleFactor }) => {
     showZoomTimeout.current = setTimeout(() => {
       setShowZoomLevel(false)
     }, 1000)
+
+    return () => clearTimeout(showZoomTimeout.current)
   }, [scaleFactor])
 
   if (!showZoomLevel) return null

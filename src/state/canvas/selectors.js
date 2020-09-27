@@ -17,8 +17,6 @@ export const getSelectedColor = state => {
   }
 }
 
-export const getStringifiedCanvas = pipe(path(['canvas']), JSON.stringify)
-
 export const getDrawnShapesWithSize = pipe(
   getShapes,
   filter(({ type }) => type !== Tools.eraser.id),
@@ -38,3 +36,8 @@ export const getDrawnShapesGroupedByColor = pipe(
     totalArea: sum(map(prop('area'), shapes))
   }))
 )
+
+export const getPastCanvas = path(['canvas', 'past'])
+export const getFutureCanvas = path(['canvas', 'future'])
+
+export const getStringifiedCanvas = pipe(path(['canvas']), JSON.stringify)
