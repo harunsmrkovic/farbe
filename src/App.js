@@ -14,7 +14,6 @@ export default function App() {
       <Provider store={store}>
         <Router>
           <Header />
-
           <Switch>
             <Route path="/stats">
               <StatsScreen />

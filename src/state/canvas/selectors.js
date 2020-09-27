@@ -1,6 +1,6 @@
 import { path, pipe } from 'ramda'
 
-const selectCanvas = deeper => path(['canvas', 'present', ...deeper])
+const selectCanvas = (deeper = []) => path(['canvas', 'present', ...deeper])
 
 export const getSelectedTool = selectCanvas(['selectedTool'])
 export const getBackgroundColor = selectCanvas(['backgroundColor'])
@@ -14,3 +14,5 @@ export const getSelectedColor = state => {
     rgba: `rgba(${[r, g, b, a].join(', ')})`
   }
 }
+
+export const getStringifiedCanvas = pipe(path(['canvas']), JSON.stringify)

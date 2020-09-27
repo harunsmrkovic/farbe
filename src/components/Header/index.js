@@ -3,6 +3,7 @@ import { NavLink, Link } from 'react-router-dom'
 
 import styled from 'styled-components/macro'
 import { Theme } from '../../constants/Theme'
+import { FileControls } from '../FileControls'
 import { Icon } from '../Icon'
 
 export const Header = () => {
@@ -21,6 +22,7 @@ export const Header = () => {
           Statistics
         </HeaderLink>
       </Nav>
+      <FileControls />
     </HeaderWrap>
   )
 }

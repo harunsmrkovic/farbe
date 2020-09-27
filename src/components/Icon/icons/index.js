@@ -6,6 +6,9 @@ import { ReactComponent as Chart } from './chart.svg'
 import { ReactComponent as SelectArrow } from './selectArrow.svg'
 import { ReactComponent as Undo } from './undo.svg'
 import { ReactComponent as Redo } from './redo.svg'
+import { ReactComponent as Export } from './export.svg'
+import { ReactComponent as Import } from './import.svg'
+import { ReactComponent as Plus } from './plus.svg'
 
 export default {
   Logo,
@@ -15,5 +18,8 @@ export default {
   Chart,
   SelectArrow,
   Undo,
-  Redo
+  Redo,
+  Export,
+  Import,
+  Plus
 }
