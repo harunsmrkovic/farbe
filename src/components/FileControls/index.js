@@ -1,6 +1,7 @@
 import React, { useRef } from 'react'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components/macro'
+import { useHotkeys } from 'react-hotkeys-hook'
 
 import { Theme } from '../../constants/Theme'
 import { canvasSlice } from '../../state/canvas'
@@ -16,6 +17,16 @@ export const FileControls = () => {
 
   const dispatch = useDispatch()
   const onNew = () => dispatch(canvasSlice.actions.startNew())
+
+  useHotkeys('cmd+s', e => {
+    e.preventDefault()
+    onExport(e)
+  })
+
+  useHotkeys('cmd+o', e => {
+    e.preventDefault()
+    onFilePickerOpen(e)
+  })
 
   return (
     <Wrap>
