@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components/macro'
 import { bindActionCreators } from 'redux'
 import { connect, useSelector } from 'react-redux'
+import { useHotkeys } from 'react-hotkeys-hook'
 
 import { Icon } from '../../../../components/ui'
 import { Theme } from '../../../../constants/Theme'
@@ -14,6 +15,9 @@ import { ActionCreators } from 'redux-undo'
 
 const ToolbarView = ({ selectTool, undo, redo }) => {
   const selectedTool = useSelector(getSelectedTool)
+
+  useHotkeys('cmd+z', undo)
+  useHotkeys('cmd+shift+z', redo)
 
   return (
     <Wrap>

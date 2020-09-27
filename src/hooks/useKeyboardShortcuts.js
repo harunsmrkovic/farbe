@@ -1,5 +1,3 @@
-import { useEffect } from 'react'
+import { useHotkeys } from 'react-hotkeys-hook'
 
-export const useKeyboardShortcuts = () => {
-  useEffect(() => {}, [])
-}
+export const useKeyboardShortcuts = () => {}
