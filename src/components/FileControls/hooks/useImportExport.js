@@ -2,11 +2,15 @@ import fileDownload from 'js-file-download'
 import { REHYDRATE } from 'redux-persist'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { getStringifiedCanvas } from '../../../state/canvas/selectors'
+import {
+  getShapes,
+  getStringifiedCanvas
+} from '../../../state/canvas/selectors'
 import { PERSIST_CANVAS_KEY } from '../../../state'
 
 export const useImportExport = () => {
   const stringifiedCanvasState = useSelector(getStringifiedCanvas)
+  const shapes = useSelector(getShapes)
   const dispatch = useDispatch()
 
   const onExport = () => {
@@ -19,6 +23,15 @@ export const useImportExport = () => {
 
     const [file] = e.target.files
     if (!file) return
+
+    if (
+      shapes.length > 0 &&
+      !window.confirm(
+        'By importing, you will lose all unsaved changes in current drawing. Do you want to continue?'
+      )
+    ) {
+      return
+    }
 
     file.text().then(json => {
       try {

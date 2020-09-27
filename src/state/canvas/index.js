@@ -42,7 +42,7 @@ export const canvasSlice = createSlice({
       if (
         state.shapes.length > 0 &&
         window.confirm(
-          'By starting a New drawing, you will lose all unsaved changes in current one. Do you want to?'
+          'By starting a New drawing, you will lose all unsaved changes in current one. Do you want to continue?'
         )
       ) {
         return {
