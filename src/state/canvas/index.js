@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { Theme } from '../../constants/Theme'
 import { Tools } from '../../constants/Tools'
 
+// TODO: split toolbar and shapes?
 export const canvasSlice = createSlice({
   name: 'canvas',
   initialState: {
@@ -35,6 +36,7 @@ export const canvasSlice = createSlice({
         // shapes: { ...state.shapes, [action.payload.id]: action.payload }
       }
     }
+    // TODO: remove this?
     // editShape: (state, action) => {
     //   return {
     //     ...state,
@@ -49,3 +51,9 @@ export const canvasSlice = createSlice({
     // }
   }
 })
+
+const { actions } = canvasSlice
+export const includeActionsUndo = [
+  actions.addShape.type,
+  actions.selectBackgroundColor.type
+]

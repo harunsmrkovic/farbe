@@ -63,9 +63,10 @@ export const useDrawing = ({ commit }) => {
         x: drawing.points[0],
         y: drawing.points[1]
       })
+    } else {
+      commit(drawing)
     }
 
-    commit(drawing)
     setDrawing(false)
   }
 

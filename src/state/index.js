@@ -1,9 +1,11 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import { canvasSlice } from './canvas'
-import undoable from 'redux-undo'
+import { canvasSlice, includeActionsUndo } from './canvas'
+import undoable, { includeAction } from 'redux-undo'
 
 export const store = configureStore({
   reducer: combineReducers({
-    canvas: undoable(canvasSlice.reducer)
+    canvas: undoable(canvasSlice.reducer, {
+      filter: includeAction(includeActionsUndo)
+    })
   })
 })

@@ -34,12 +34,12 @@ const ToolbarView = ({ selectTool, undo, redo }) => {
       </ToolsWrap>
 
       <Controls>
-        <Tool onClick={undo}>
+        <Control onClick={undo}>
           <Icon name="Undo" size={25} color={Theme.color.white} />
-        </Tool>
-        <Tool onClick={redo}>
+        </Control>
+        <Control onClick={redo}>
           <Icon name="Redo" size={25} color={Theme.color.white} />
-        </Tool>
+        </Control>
       </Controls>
     </Wrap>
   )
@@ -65,7 +65,21 @@ const ToolsWrap = styled.div`
   flex-direction: column;
 `
 
-const Controls = styled.div``
+const Controls = styled.div`
+  display: flex;
+  align-items: center;
+`
+
+const Control = styled.button`
+  height: 80px;
+  flex: 1;
+
+  transition: opacity ${({ theme }) => theme.transition.normal};
+
+  &:hover {
+    opacity: 0.5;
+  }
+`
 
 const Tool = styled.button`
   height: 80px;

@@ -24,7 +24,7 @@ export const CanvasSettingsView = ({
   return (
     <Wrap>
       <div>
-        <Text h5>Tool settings</Text>
+        <Text h5>Brush color</Text>
         <SpacerWrap>
           <ChromePicker
             color={selectedColor.rgb}
@@ -43,7 +43,7 @@ export const CanvasSettingsView = ({
         </SpacerWrap>
       </div>
       <div>
-        <Text h5>Canvas settings</Text>
+        <Text h5>Background color</Text>
         <SpacerWrap>
           <CirclePicker
             color={backgroundColor}
@@ -60,6 +60,7 @@ const Wrap = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  overflow-y: scroll;
 
   width: ${({ theme }) => theme.layoutSizes.settingsWidth}px;
   top: ${({ theme }) => theme.layoutSizes.headerHeight}px;
