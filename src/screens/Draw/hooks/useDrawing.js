@@ -15,10 +15,13 @@ import {
 
 export const useDrawing = ({ commit }) => {
   const [drawing, setDrawing] = useState(false)
+  const [cursor, setCursor] = useState(false)
 
   const selectedTool = useSelector(getSelectedTool)
   const selectedColor = useSelector(getSelectedColor)
   const strokeWidth = useSelector(getStrokeSize)
+
+  const isEraser = selectedTool === Tools.eraser.id
 
   const onStageMouseDown = e => {
     const stage = e.target.getStage()
@@ -27,21 +30,30 @@ export const useDrawing = ({ commit }) => {
     setDrawing({
       type: selectedTool,
       konvaComponent: 'Line',
-      bezier: true,
+      // bezier: true,
       strokeWidth,
       lineCap: 'round',
       stroke: selectedColor.rgba,
       points: [x, y],
-      globalCompositeOperation:
-        selectedTool === Tools.eraser.id ? 'destination-out' : 'source-over'
+      globalCompositeOperation: isEraser ? 'destination-out' : 'source-over'
     })
   }
 
   const onStageMouseMove = e => {
-    if (!drawing) return
-
     const stage = e.target.getStage()
     const { x, y } = getRelativePointerPosition(stage)
+
+    // Handle cursor move
+    setCursor({
+      x,
+      y,
+      radius: strokeWidth / 2,
+      stroke: isEraser ? '#fff' : selectedColor.rgba,
+      fill: isEraser ? 'transparent' : selectedColor.rgba
+    })
+
+    // Handle drawing, if mouse has been pressed
+    if (!drawing) return
 
     setDrawing(drawing => ({
       ...drawing,
@@ -70,7 +82,16 @@ export const useDrawing = ({ commit }) => {
     setDrawing(false)
   }
 
-  return { onStageMouseDown, onStageMouseUp, onStageMouseMove, drawing }
+  const onStageMouseLeave = () => setCursor(false)
+
+  return {
+    onStageMouseDown,
+    onStageMouseUp,
+    onStageMouseMove,
+    onStageMouseLeave,
+    drawing,
+    cursor
+  }
 }
 
 const getRelativePointerPosition = node => {

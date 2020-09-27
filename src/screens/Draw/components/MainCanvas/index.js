@@ -1,6 +1,6 @@
 import { bindActionCreators } from '@reduxjs/toolkit'
 import React from 'react'
-import { Stage, Layer, default as Konva } from 'react-konva'
+import { Stage, Layer, default as Konva, Circle } from 'react-konva'
 import { connect, useSelector } from 'react-redux'
 import styled from 'styled-components/macro'
 import { canvasSlice } from '../../../../state/canvas'
@@ -23,7 +23,9 @@ export const MainCanvasView = ({ addShape }) => {
     onStageMouseDown,
     onStageMouseUp,
     onStageMouseMove,
-    drawing
+    onStageMouseLeave,
+    drawing,
+    cursor
   } = useDrawing({ commit: addShape })
 
   const shapes = useSelector(getShapes)
@@ -41,18 +43,16 @@ export const MainCanvasView = ({ addShape }) => {
         onMouseDown={onStageMouseDown}
         onMouseMove={onStageMouseMove}
         onMouseUp={onStageMouseUp}
+        onMouseLeave={onStageMouseLeave}
       >
         <Layer>
           {shapes && <ShapesLayer shapes={shapes} />}
-          {drawing && <DrawingLayer {...drawing} />}
+          {drawing && <Shape {...drawing} />}
+          {cursor && <Circle {...cursor} />}
         </Layer>
       </Stage>
     </Background>
   )
-}
-
-const DrawingLayer = props => {
-  return <Shape {...props} />
 }
 
 const ShapesLayer = ({ shapes }) => {
