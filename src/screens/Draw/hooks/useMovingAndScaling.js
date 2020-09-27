@@ -1,4 +1,5 @@
 import { useCallback, useState } from 'react'
+import { useHotkeys } from 'react-hotkeys-hook'
 
 /*
   Hook for handling manipulation of Canvas,
@@ -10,6 +11,8 @@ export const useMovingAndScaling = () => {
   const [offsetX, setOffsetX] = useState(0)
   const [offsetY, setOffsetY] = useState(0)
   const [scaleFactor, setScaleFactor] = useState(1)
+
+  useHotkeys('cmd+0', () => setScaleFactor(1))
 
   const onStageWheel = useCallback(e => {
     // Handle pinch to zoom

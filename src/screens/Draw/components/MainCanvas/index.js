@@ -3,6 +3,7 @@ import React from 'react'
 import { Stage, Layer, default as Konva, Circle } from 'react-konva'
 import { connect, useSelector } from 'react-redux'
 import styled from 'styled-components/macro'
+
 import { canvasSlice } from '../../../../state/canvas'
 import {
   getBackgroundColor,
@@ -12,6 +13,7 @@ import {
 import { useCanvasSize } from '../../hooks/useCanvasSize'
 import { useDrawing } from '../../hooks/useDrawing'
 import { useMovingAndScaling } from '../../hooks/useMovingAndScaling'
+import { ZoomLevel } from '../ZoomLevel'
 
 export const MainCanvasView = ({ addShape }) => {
   const { canvasWidth, canvasHeight } = useCanvasSize()
@@ -51,6 +53,7 @@ export const MainCanvasView = ({ addShape }) => {
           {cursor && <Circle {...cursor} />}
         </Layer>
       </Stage>
+      <ZoomLevel scaleFactor={scaleFactor} />
     </Background>
   )
 }
@@ -71,5 +74,6 @@ export const MainCanvas = connect(null, dispatch =>
 )(MainCanvasView)
 
 const Background = styled.div`
+  position: relative;
   background-color: ${({ color }) => color};
 `
