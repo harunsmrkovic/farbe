@@ -2,6 +2,16 @@
 
 Farbe is an app that enables you to draw your hearts out on a Canvas.
 
+![image](https://user-images.githubusercontent.com/6838180/94918550-169d5980-04b3-11eb-98d6-7ad6a7b6a246.png)
+
+## Features
+
+- Paint with various brush sizes & colors 💅 
+- Erase stuff as well 🧹 
+- Export your masterpiece, and be able to import it back later
+- Undo & Redo ⏩ (w/ History!)
+- Statistics 📊 showing surface area of colors
+
 ## Available Scripts
 
 In the project directory, you can run:
