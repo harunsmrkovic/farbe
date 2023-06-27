@@ -2,7 +2,7 @@
 
 Farbe is an app that enables you to draw your hearts out on a Canvas.
 
-Play with it 🚀 [here](https://master.d1qwyccswasz8l.amplifyapp.com/).
+Play with it 🚀 [here](https://farbe.hakazvaka.com/).
 
 ![image](https://user-images.githubusercontent.com/6838180/94918550-169d5980-04b3-11eb-98d6-7ad6a7b6a246.png)
 
